@@ -20,7 +20,8 @@ app.add_middleware(
 
 # Global variables
 sectors_gdf = None
-GPKG_PATH = r"d:\Work\Learning\Complain_Tools\4G_GCell_20260201.gpkg"
+# Allow overriding via environment variable, or fallback to relative path (one level up from backend/)
+GPKG_PATH = os.environ.get("GPKG_PATH", os.path.join(os.path.dirname(__file__), "..", "4G_GCell_20260201.gpkg"))
 
 @app.on_event("startup")
 def startup_event():
