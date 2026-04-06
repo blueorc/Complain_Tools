@@ -21,24 +21,12 @@ app.add_middleware(
 # Global variables
 sectors_gdf = None
 # Allow overriding via environment variable, or fallback to relative path (one level up from backend/)
-GPKG_PATH = os.environ.get("GPKG_PATH", os.path.join(os.path.dirname(__file__), "..", "4G_GCell_20260201.gpkg"))
-
-import zipfile
+GPKG_PATH = os.environ.get("GPKG_PATH", os.path.join(os.path.dirname(__file__), "..", "4G_GCell_Jabat_W12.gpkg"))
 
 @app.on_event("startup")
 def startup_event():
     global sectors_gdf
-    # Check if the uncompressed file missing, but we have the zip
-    zip_path = os.path.join(os.path.dirname(__file__), "..", "4g_compressed.zip")
-    if not os.path.exists(GPKG_PATH) and os.path.exists(zip_path):
-        print("Extracting GPKG from ZIP archive...")
-        try:
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                # Extract to the parent directory (same place GPKG_PATH points to without overrides)
-                zip_ref.extractall(os.path.join(os.path.dirname(__file__), ".."))
-        except Exception as e:
-            print("Failed to unzip GPKG:", e)
-
+    
     if os.path.exists(GPKG_PATH):
         try:
             sectors_gdf = gpd.read_file(GPKG_PATH)
@@ -46,6 +34,8 @@ def startup_event():
             print(f"Loaded {len(sectors_gdf)} sectors from GPKG.")
         except Exception as e:
             print("Failed to load GPKG:", e)
+    else:
+        print(f"WARNING: GPKG file not found at {GPKG_PATH}")
 
 @app.get("/")
 def read_root():
