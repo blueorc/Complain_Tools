@@ -27,10 +27,10 @@ _This file will be used to track tasks from the planning phase through implement
 - [x] Apply micro-interactions (button hover glows, cards lifting, Framer Motion particle background).
 
 ## Phase 4: Integration & Verification
-- [ ] Connect the frontend UI to the FastAPI endpoints.
-- [ ] Test CSV ingestion and ensure charts match raw CSV data.
-- [ ] Test Map location input and verify that lines draw exactly to the correct wedge polygons.
-- [ ] Polish UI animations and shimmer effects.
+- [x] Connect the frontend UI to the FastAPI endpoints.
+- [x] Test CSV ingestion and ensure charts match raw CSV data (via test_api.py).
+- [x] Test Map location input and verify that lines draw exactly to the correct wedge polygons.
+- [x] Polish UI animations and shimmer effects.
 
 ## Phase 5: Deployment
 - [ ] Prepare `render.yaml` for FastAPI deployment.
