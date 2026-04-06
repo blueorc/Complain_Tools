@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+__pycache__/
+venv/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+*.gpkg
+*.csv  
