@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ParticleBackground from './components/ParticleBackground';
 import Uploader from './components/Uploader';
 import RFMap from './components/Map';
